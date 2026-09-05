@@ -14,6 +14,34 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
 
+const PORT = process.env.PORT || 3000;
+const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
+
+const ADMIN_EMAIL =
+  process.env.ADMIN_EMAIL || 'admin@marianemoreira.com.br';
+
+const ADMIN_PASSWORD =
+  process.env.ADMIN_PASSWORD || 'Mariane@2026';
+
+const ensureAdmin = () => {
+  const existing = db.prepare(
+    'SELECT id FROM admins WHERE email = ?'
+  ).get(ADMIN_EMAIL);
+
+  if (!existing) {
+    const hash = bcrypt.hashSync(ADMIN_PASSWORD, 10);
+
+    db.prepare(`
+      INSERT INTO admins(email, password_hash)
+      VALUES(?, ?)
+    `).run(ADMIN_EMAIL, hash);
+
+    console.log('Administrador criado:', ADMIN_EMAIL);
+  }
+};
+
+ensureAdmin();
+
 fs.mkdirSync('uploads', { recursive: true });
 
 const upload = multer({
