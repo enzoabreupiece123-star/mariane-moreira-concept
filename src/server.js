@@ -826,8 +826,15 @@ app.post('/api/orders', (req, res) => {
         );
       }
 
-      const unit =
-        Number(p.promo_price || p.price);
+      const unit = Number(
+  p.promo_price != null
+    ? p.promo_price
+    : p.price
+);
+
+if (!Number.isFinite(unit)) {
+  throw new Error(`Preço inválido: ${p.name}`);
+}
 
       const q = Number(i.quantity);
 
