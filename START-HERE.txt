@@ -1,0 +1,13 @@
+MARIANE MOREIRA CONCEPT — INÍCIO RÁPIDO
+
+1) Instale Node.js 20 ou superior.
+2) Entre na pasta do projeto.
+3) Execute: npm install
+4) Copie .env.example para .env e altere JWT_SECRET e ADMIN_PASSWORD.
+5) Execute: npm run seed
+6) Execute: npm start
+7) Loja: http://localhost:3000
+8) Admin: http://localhost:3000/admin/
+
+O banco SQLite é criado em data/store.db.
+O número do WhatsApp pode ser alterado pela variável WHATSAPP ou no painel em Configurações.
