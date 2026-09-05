@@ -1003,3 +1003,55 @@ app.post('/api/orders', (req, res) => {
         'whatsapp',
         '5511945921719'
       )
+  });
+
+  } catch (e) {
+    res.status(400).json({
+      error: e.message
+    });
+  }
+});
+
+app.get('/api/orders/:id', auth, (req, res) => {
+  const o = db.prepare(
+    'SELECT * FROM orders WHERE id = ?'
+  ).get(req.params.id);
+
+  if (!o) {
+    return res.status(404).json({
+      error: 'Pedido não encontrado'
+    });
+  }
+
+  o.items = db.prepare(`
+    SELECT *
+    FROM order_items
+    WHERE order_id = ?
+  `).all(o.id);
+
+  res.json(o);
+});
+
+app.get('/checkout', (req, res) => {
+  res.sendFile(
+    path.resolve('public/checkout.html')
+  );
+});
+
+app.get('/{*splat}', (req, res) => {
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({
+      error: 'Rota não encontrada'
+    });
+  }
+
+  res.sendFile(
+    path.resolve('public/index.html')
+  );
+});
+
+app.listen(PORT, () => {
+  console.log(
+    `Mariane Moreira Concept: http://localhost:${PORT}`
+  );
+});
