@@ -1,1 +1,40 @@
-
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Painel — Mariane Moreira Concept</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body{background:#f8f5f4}
+    .admin{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+    .side{background:var(--ink);color:#fff;padding:25px 18px}
+    .side h1{font:24px 'Playfair Display';margin:0 0 35px}
+    .side button{display:block;width:100%;background:none;color:#fff;border:0;text-align:left;padding:12px;border-radius:5px}
+    .side button.active,.side button:hover{background:#ffffff18}
+    .main{padding:28px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .stat{background:#fff;padding:20px;border:1px solid var(--line)}
+    .stat b{display:block;font-size:28px;margin-top:5px}
+    .panel{background:#fff;border:1px solid var(--line);padding:20px;margin-top:20px;overflow:auto}
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:13px}
+    .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .full{grid-column:1/-1}
+    .btn.danger{background:#8c3434;border-color:#8c3434}
+    @media(max-width:850px){
+      .admin{grid-template-columns:1fr}
+      .side{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow:auto;padding:10px}
+      .side h1{display:none}
+      .side button{min-width:max-content}
+      .stats{grid-template-columns:1fr 1fr}
+      .formgrid{grid-template-columns:1fr}
+      .main{padding:15px}
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
