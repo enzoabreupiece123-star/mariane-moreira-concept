@@ -14,8 +14,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
 
-const PORT = process.env.PORT || 3000;
-const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
 
 const ADMIN_EMAIL =
   process.env.ADMIN_EMAIL || 'admin@marianemoreira.com.br';
